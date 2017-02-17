@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :doses, only: [:new, :create]
   end
   resources :doses, only: [:destroy]
+  mount Attachinary::Engine => "/attachinary"
   # GET /cocktails/:cocktail_id/doses/new
   # POST /cocktails/:cocktail_id/doses
   # DELETE /doses/:id

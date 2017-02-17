@@ -11,6 +11,12 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def create
     #1. Build a new Cocktail instance
     @cocktail = Cocktail.new(cocktail_params)
@@ -25,6 +31,6 @@ class CocktailsController < ApplicationController
 
   private
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :photo)
   end
 end
