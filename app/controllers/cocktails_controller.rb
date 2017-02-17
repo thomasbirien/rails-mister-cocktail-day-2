@@ -1,21 +1,16 @@
 class CocktailsController < ApplicationController
+  before_action :find_cocktail_id, only: [:show, :edit, :update]
   def index
     @cocktails = Cocktail.all # Array of Cocktail instances
   end
 
   def show
-    @cocktail = Cocktail.find(params[:id])
   end
 
   def new
     @cocktail = Cocktail.new
   end
 
-  def edit
-  end
-
-  def update
-  end
 
   def create
     #1. Build a new Cocktail instance
@@ -29,8 +24,20 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @cocktail.update(cocktail_params)
+    redirect_to cocktail_path(@cocktail)
+  end
+
   private
+  def find_cocktail_id
+    @cocktail = Cocktail.find(params[:id])
+  end
+
   def cocktail_params
-    params.require(:cocktail).permit(:name, :photo)
+    params.require(:cocktail).permit(:name, photos: [])
   end
 end
